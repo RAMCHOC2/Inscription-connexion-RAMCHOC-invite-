@@ -14,8 +14,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column; /* Permet d'ajouter du contenu en haut de la page */
-            overflow-y: auto; /* Activer le défilement vertical */
+            flex-direction: column;
+            overflow-y: auto;
         }
         h1 {
             font-size: 36px;
@@ -90,31 +90,50 @@
         .generate-button:hover, .copy-button:hover {
             background-color: #8b4513; /* Couleur chocolat foncé */
         }
+        .link-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .link-section p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .link-code {
+            font-size: 20px;
+            color: #8b4513;
+            background-color: #ffd700;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
 <h1>Mon équipe</h1>
+<div class="container">
     <div class="team-stats">
         <div class="stat">
             <div class="icon">👥</div>
             <p>Total de l'équipe</p>
-            <p><strong>00</strong></p>
+            <p><strong>50</strong></p>
         </div>
         <div class="stat">
             <div class="icon">💰</div>
             <p>Total de recharge de l'équipe</p>
-            <p><strong>00 XOF</strong></p>
+            <p><strong>767,000 XOF</strong></p>
         </div>
         <div class="stat">
             <div class="icon">💼</div>
             <p>Solde principal de l'équipe</p>
-            <p><strong>00 XOF</strong></p>
+            <p><strong>1,500,238 XOF</strong></p>
         </div>
         <div class="stat">
             <div class="icon">🏧</div>
             <p>Retrait total de l'équipe</p>
-            <p><strong>00 XOF</strong></p>
+            <p><strong>850,000 XOF</strong></p>
         </div>
     </div>
 
@@ -127,6 +146,11 @@
         <div id="parrainageCode" class="parrainage-code">XXXXX</div><br>
         <button id="generateButton" class="generate-button">Générer un nouveau code</button>
         <button id="copyButton" class="copy-button">Copier le code</button>
+    </div>
+    
+    <div class="link-section">
+        <p>Copiez le lien d'invitation ci-dessous :</p>
+        <div id="invitationLink" class="link-code" onclick="copyLink()">https://ramchoc2.github.io/Mon-compte-inscription-et-connexion-invite-/equipe.html</div>
     </div>
 </div>
 
@@ -154,6 +178,15 @@
             alert('Échec de la copie du code.');
         });
     };
+
+    function copyLink() {
+        const linkText = document.getElementById('invitationLink').textContent;
+        navigator.clipboard.writeText(linkText).then(function() {
+            alert('Lien copié: ' + linkText);
+        }, function() {
+            alert('Échec de la copie du lien.');
+        });
+    }
 
     // Générer un code initialement au chargement de la page
     document.getElementById('parrainageCode').textContent = generateCode();
